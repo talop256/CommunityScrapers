@@ -13,7 +13,7 @@ xPathScrapers:
     common:
       $sr: //div/h2[span[contains(text(),"title")]]/following-sibling::ul[1]//a
     performer:
-      Name: $sr
+      Name: $sr/@title
       URL:
         selector: $sr/@href
         postProcess:
@@ -83,4 +83,4 @@ xPathScrapers:
       Details:
         selector: //div[@class="mw-parser-output"]/p
         concat: "\n\n"
-# Last Updated February 01, 2022
+# Last Updated December 13, 2022
