@@ -1,4 +1,9 @@
 name: "AEBN"
+performerByName:
+  action: scrapeXPath
+  queryURL: https://straight.aebn.com/straight/search/stars/page/1?sysQuery={}}&criteria=%7B%22sort%22%3A%22Relevance%22
+  scraper: performerSearch
+  
 performerByURL:
   - action: scrapeXPath
     url:
@@ -14,7 +19,21 @@ movieByURL:
     url:
       - aebn.com
     scraper: movieScraper
+
 xPathScrapers:
+  performerSearch:
+    performer:
+      Name:
+        selector: //div[@class="dts-collection-item dts-collection-item-star"]//a[contains(@href, "/straight/stars/")]/@title
+      URL:
+        selector: //div[@class="dts-collection-item dts-collection-item-star"]//a[contains(@href, "/straight/stars/")]/@href
+        postProcess:
+          - replace:
+              - regex: ^
+                with: https://straight.aebn.com
+              - regex: https:\/\/straight\.aebn\.comhttps:\/\/straight\.aebn\.com
+                with: https://straight.aebn.com
+
   performerScraper:
     performer:
       Name: //div[@class='dts-section-page-heading-title']/h1
@@ -113,4 +132,4 @@ xPathScrapers:
           - replace:
               - regex: ^([^?]+).*$
                 with: "https:$1"
-# Last Updated July 06, 2022
+# Last Updated December 13, 2022
