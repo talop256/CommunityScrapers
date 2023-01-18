@@ -1,4 +1,23 @@
 name: CherryPimps
+
+sceneByFragment:
+  action: scrapeXPath
+  scraper: sceneScraper
+  queryURL: https://cherrypimps.com/trailers/{filename}.html
+  queryURLReplace:
+    filename:
+      - regex: ([0-9].)_([a-z,A-Z,0-9]*).*(.mp4)
+        with: $1-$2
+
+sceneByName:
+  action: scrapeXPath
+  scraper: sceneScraper
+  queryURL: https://cherrypimps.com/trailers/{filename}.html
+  queryURLReplace:
+    filename:
+      - regex: ([0-9].)_([a-z,A-Z,0-9]*).*(.mp4)
+        with: $1-$2
+
 galleryByURL:
   - action: scrapeXPath
     url: &urls
@@ -42,4 +61,4 @@ xPathScrapers:
       Details: *detailsSel
       Tags: *tagsAttr
       Image: //div[@class="player-thumb"]/img/@src0_1x
-# Last Updated March 03, 2022
+# Last Updated January 18, 2023
