@@ -39,7 +39,18 @@ xPathScrapers:
         Name:
           selector: //div[@class="actions"]/a
       Performers:
-        Name: $performer
+        Name: 
+          selector: $performer/@href
+          postProcess: 
+            - replace:
+                - regex: ^/
+                  with: "https://www.bang.com/"
+            - subScraper:
+                selector: //picture//img[contains(@alt,"profile")]/@alt
+                postProcess:
+                  - replace:
+                      - regex: \b profile
+                        with: ""
         URL:
           selector: $performer/@href
           postProcess: &addhost
@@ -49,21 +60,34 @@ xPathScrapers:
       Studio:
         Name:  //p[contains(text(),"Studio:")]//a[contains(@href,"from=")]
       Movies:
-        Name: $movie
+        Name: 
+          selector: $movie/@href
+          postProcess: 
+            - replace:
+                - regex: ^/
+                  with: "https://www.bang.com/"
+            - subScraper:
+                selector: //meta[@name="og:title"]/@content
         URL:
           selector: $movie/@href
           postProcess: *addhost
+
   movieScraper:
     common:
       $details: //div[@data-controller="login"]
       $image: //div[contains(@class,"justify-start")]/div/img[contains(@src,"/front")]/@src
     movie:
       Name:
-        selector: //div[@class="w-full"]/h1
+        selector: //meta[@name="og:title"]/@content
       Duration:
-        selector: (//div[@class="w-full"]//span[*[name()='svg']])[2]
+        selector: //div[@data-controller="login"]//p//span[contains(text(),":")]
+        postProcess:
+          - replace:
+              - regex: ^(\d\d:\d\d)$
+                with: "00:"
+          - parseDate: 15:00:05
       Date:
-        selector: $details//p[contains(text(), "Released:")]/span
+        selector: $details//p[contains(text(), "Date:")]/span
         postProcess:
           - parseDate: Jan 02, 2006
       Synopsis: $details//p[contains(@class,"clear-both")]
@@ -85,7 +109,12 @@ xPathScrapers:
     common:
       $overlay: //div[@class="flex flex-col md:items-start items-center"]
     performer:
-      Name: $overlay/h1
+      Name: 
+        selector: //picture//img[contains(@alt,"profile")]/@alt
+        postProcess:
+          - replace:
+              - regex: \b profile
+                with: ""
       URL:
         selector: //link[@rel="canonical"][1]/@href
       Twitter:
