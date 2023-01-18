@@ -1,39 +1,30 @@
-name: "TabooHeat"
+name: "ChaosMen"
 sceneByURL:
   - action: script
     url:
-      - tabooheat.com/en/video
+      - chaosmen.com/en/video
     script:
       - python
       - Algolia.py
-      - tabooheat
+      - chaosmen
 sceneByFragment:
   action: script
   script:
     - python
     - Algolia.py
-    - tabooheat
+    - chaosmen
 sceneByName:
   action: script
   script:
     - python
     - Algolia.py
-    - tabooheat
+    - chaosmen
     - searchName
 sceneByQueryFragment:
   action: script
   script:
     - python
     - Algolia.py
-    - tabooheat
+    - chaosmen
     - validName
-galleryByURL:
-  - action: script
-    url:
-      - tabooheat.com/en/photo/
-    script:
-      - python
-      - Algolia.py
-      - tabooheat
-      - gallery
-# Last Updated December 22, 2022
+# Last Updated January 10, 2023

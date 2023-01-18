@@ -1,39 +1,39 @@
-name: "TabooHeat"
+name: "Rod's Room"
 sceneByURL:
   - action: script
     url:
-      - tabooheat.com/en/video
+      - rodsroom.com/en/video
     script:
       - python
       - Algolia.py
-      - tabooheat
+      - rodsroom
 sceneByFragment:
   action: script
   script:
     - python
     - Algolia.py
-    - tabooheat
+    - rodsroom
 sceneByName:
   action: script
   script:
     - python
     - Algolia.py
-    - tabooheat
+    - rodsroom
     - searchName
 sceneByQueryFragment:
   action: script
   script:
     - python
     - Algolia.py
-    - tabooheat
+    - rodsroom
     - validName
 galleryByURL:
   - action: script
     url:
-      - tabooheat.com/en/photo/
+      - rodsroom.com/en/photo/
     script:
       - python
       - Algolia.py
-      - tabooheat
+      - rodsroom
       - gallery
-# Last Updated December 22, 2022
+# Last Updated December 26, 2022
